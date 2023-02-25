@@ -21,7 +21,7 @@ import ecsnetpp.cpu.CPUCore;
 import inet.node.inet.StandardHost;
 import inet.node.inet.AdhocHost;
 import inet.node.inet.WirelessHost;
-import inet.node.inet.NodeBase;
+import inet.node.base.NodeBase;
 import inet.power.contract.IEnergyConsumer;
 import ecsnetpp.power.consumer.CPUPowerConsumer;
 import ecsnetpp.power.consumer.NetworkPowerConsumer;
