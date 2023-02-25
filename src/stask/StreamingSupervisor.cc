@@ -145,7 +145,7 @@ void StreamingSupervisor::processTCPMessage(cMessage* msg) {
 //                std::cout << "RR=" << _downstreamNodes[i] << endl;
                     sock = new inet::TcpSocket();
                     sock->setOutputGate(gate("tcpOut"));
-                    sock->setCallbackObject(this, nullptr);
+                    sock->setCallback(this);
                     tcpSocketMap.addSocket(sock);
                     destinationSocketMap[_downstreamNodes[i]] = sock;
                     sock->connect(_downstreamNodes[i], 1000);
