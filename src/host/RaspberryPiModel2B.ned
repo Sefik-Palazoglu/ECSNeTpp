@@ -58,10 +58,10 @@ module RaspberryPiModel2B extends WirelessHost
         networkPowerConsumer: NetworkPowerConsumer;
         energyStore: IdealNodeEnergyStorage;
     connections allowunconnected:
-        supervisor.udpIn <-- udp.appOut++ if hasUdp;
-        supervisor.udpOut --> udp.appIn++ if hasUdp;
-        supervisor.tcpIn <-- tcp.appOut++ if hasTcp;
-        supervisor.tcpOut --> tcp.appIn++ if hasTcp;
+        supervisor.udpIn <-- udp.appOut if hasUdp;
+        supervisor.udpOut --> udp.appIn if hasUdp;
+        supervisor.tcpIn <-- tcp.appOut if hasTcp;
+        supervisor.tcpOut --> tcp.appIn if hasTcp;
         // connect supervisor to acker 
         // only if the acker is placed in this node
         supervisor.ackerOut++ --> acker.ackerIn if hasAcker;
