@@ -9,15 +9,15 @@
 #define STASK_STREAMINGSUPERVISOR_H_
 
 #include "omnetpp.h"
-#include "inet/transportlayer/contract/udp/UDPSocket.h"
-#include "inet/transportlayer/contract/tcp/TCPSocket.h"
-#include "inet/transportlayer/contract/tcp/TCPSocketMap.h"
+#include "inet/transportlayer/contract/udp/UdpSocket.h"
+#include "inet/transportlayer/contract/tcp/TcpSocket.h"
+#include "inet/common/socket/SocketMap.h"
 
 using namespace omnetpp;
 
 namespace ecsnetpp {
 
-class StreamingSupervisor: public cSimpleModule , public inet::TCPSocket::CallbackInterface{
+class StreamingSupervisor: public cSimpleModule , public inet::TcpSocket::ICallback{
 
 private:
     const char* cloudAddress;
@@ -26,14 +26,14 @@ private:
     bool checkpointsEnabled;
     bool hasUdp;
     bool hasTcp;
-    inet::UDPSocket udpSocket;
-    inet::TCPSocket tcpSocket;
-    inet::TCPSocket serverSocket;
-    inet::TCPSocketMap tcpSocketMap;
+    inet::UdpSocket udpSocket;
+    inet::TcpSocket tcpSocket;
+    inet::TcpSocket serverSocket;
+    inet::SocketMap tcpSocketMap;
     cMessage *selfMsg = nullptr;
     cMessage *bindMsg = nullptr;
     cMessage *joinMCastMsg = nullptr;
-    std::map<inet::L3Address, inet::TCPSocket *> destinationSocketMap;
+    std::map<inet::L3Address, inet::TcpSocket *> destinationSocketMap;
     std::map<std::string, std::vector<std::string>> senderStaskCategoryToDownstreamNodeMap;
     std::map<std::string, std::vector<inet::L3Address>> senderStaskCategoryToDownstreamNodeIPMap;
 
