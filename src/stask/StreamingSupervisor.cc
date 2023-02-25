@@ -50,9 +50,9 @@ void StreamingSupervisor::initialize() {
 void StreamingSupervisor::processSelfMessage() {
     if (hasUdp) {
         bindMsg = new cMessage("UDP_C_BIND", inet::UDP_C_BIND);
-        inet::UDPBindCommand* ctrl2 = new inet::UDPBindCommand();
-        int socketId = inet::UDPSocket::generateSocketId();
-        ctrl2->setSockId(socketId);
+        inet::UdpBindCommand* ctrl2 = new inet::UdpBindCommand();
+        // int socketId = inet::UdpSocket::generateSocketId();
+        // ctrl2->setSockId(socketId);
         //        ctrl2->setLocalAddr(inet::L3AddressResolver().resolve("225.0.0.1"));
         ctrl2->setLocalPort(1000);
         bindMsg->setControlInfo(ctrl2);
@@ -60,8 +60,8 @@ void StreamingSupervisor::processSelfMessage() {
         // Join the multicast group only if the node connects to a sink
         if (joinMulticastGroup) {
             joinMCastMsg = new cMessage("UDP_C_SETOPTION", inet::UDP_C_SETOPTION);
-            inet::UDPJoinMulticastGroupsCommand* ctrl = new inet::UDPJoinMulticastGroupsCommand();
-            ctrl->setSockId(socketId);
+            inet::UdpJoinMulticastGroupsCommand* ctrl = new inet::UdpJoinMulticastGroupsCommand();
+            // ctrl->setSockId(socketId);
             ctrl->setMulticastAddrArraySize(1);
             ctrl->setMulticastAddr(0, inet::L3AddressResolver().resolve(cloudAddress));
             joinMCastMsg->setControlInfo(ctrl);
@@ -81,7 +81,13 @@ void StreamingSupervisor::processUDPMessage(cMessage* msg) {
             std::vector<inet::L3Address> _downstreamNodes = senderStaskCategoryToDownstreamNodeIPMap[sender];
             for (size_t i = 0; i < _downstreamNodes.size(); i++) {
                 udpSocket.connect(_downstreamNodes[i], 1000);
-                udpSocket.send(msgToSend->dup());
+                EV << "9412: Try to check_and_cast msg to inet::Packet\n";
+                inet::Packet* packet = check_and_cast<inet::Packet*>(msgToSend->dup());
+                EV << "9412: SUCCESS to check_and_cast msg to inet::Packet\n";
+
+                EV << "9413: Try to send packet from 9412\n";
+                udpSocket.send(packet);
+                EV << "9413: SUCCESS to send packet from 9412\n";
                 udpSocket.close();
             }
             delete msgToSend;
@@ -89,7 +95,14 @@ void StreamingSupervisor::processUDPMessage(cMessage* msg) {
             const char* ackerAddress = getAncestorPar("ackerAddress").stringValue();
             udpSocket.connect(inet::L3AddressResolver().resolve(ackerAddress), 1000);
             Ack* ack = check_and_cast<Ack*>(msg);
-            udpSocket.send(ack);
+
+            EV << "9412: Try to check_and_cast msg to inet::Packet\n";
+            inet::Packet* packet = check_and_cast<inet::Packet*>(ack->dup());
+            EV << "9412: SUCCESS to check_and_cast msg to inet::Packet\n";
+
+            EV << "9413: Try to send packet from 9412\n";
+            udpSocket.send(packet);
+            EV << "9413: SUCCESS to send packet from 9412\n";
             udpSocket.close();
         }
     } else {
