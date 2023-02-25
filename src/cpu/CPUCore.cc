@@ -71,7 +71,7 @@ void CPUCore::handleMessage(cMessage *msg) {
         emit(ISTask::cpuStateChangedSignal, States::CPU_BUSY);
         StreamingMessage *msgToProcess = check_and_cast<StreamingMessage *>(msg);
         msgToProcess->setOperatorIngressTime(simTime());
-        bool isProcessingDelayInCpuCycles = msgToProcess->getIsProcessingDelayInCyclesPerEvent();
+        bool isProcessingDelayInCpuCycles = msgToProcess->isProcessingDelayInCyclesPerEvent();
         double processingDelay = msgToProcess->getProcessingDelayPerEvent();
 //        double cyclesPerEvent = msgToProcess->getCyclesPerEvent();
         int senderModuleId = msgToProcess->getSenderModuleId();
