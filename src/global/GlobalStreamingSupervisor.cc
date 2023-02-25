@@ -23,8 +23,8 @@ Define_Module(GlobalStreamingSupervisor);
 void GlobalStreamingSupervisor::initialize() {
     socket.setOutputGate(gate("udpOut"));
     bindMsg = new cMessage("UDP_C_BIND", inet::UDP_C_BIND);
-    inet::UDPBindCommand *ctrl2 = new inet::UDPBindCommand();
-    int socketId = inet::UDPSocket::generateSocketId();
+    inet::UdpBindCommand *ctrl2 = new inet::UdpBindCommand();
+    int socketId = inet::UdpSocket::generateSocketId();
     ctrl2->setSockId(socketId);
     ctrl2->setLocalPort(1000);
     bindMsg->setControlInfo(ctrl2);

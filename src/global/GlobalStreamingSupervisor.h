@@ -20,7 +20,7 @@
 #include "../msg/StreamingMessage_m.h"
 #include "inet/networklayer/common/L3Address.h"
 #include "inet/networklayer/common/L3AddressResolver.h"
-#include "inet/transportlayer/contract/udp/UDPSocket.h"
+#include "inet/transportlayer/contract/udp/UdpSocket.h"
 
 //using namespace inet;
 using namespace omnetpp;
@@ -29,7 +29,7 @@ namespace ecsnetpp {
 
 class GlobalStreamingSupervisor: public cSimpleModule {
 private:
-    inet::UDPSocket socket;
+    inet::UdpSocket socket;
     cMessage *bindMsg = nullptr;
     std::map<std::string, std::vector<std::string>> senderStaskCategoryToDownstreamNodeMap;
     std::map<std::string, std::vector<inet::L3Address>> senderStaskCategoryToDownstreamNodeIPMap;
