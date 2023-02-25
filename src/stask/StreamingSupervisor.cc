@@ -166,8 +166,7 @@ void StreamingSupervisor::processTCPMessage(cMessage* msg) {
         if (!socket) {
             socket = new inet::TcpSocket(msg);
             socket->setOutputGate(gate("tcpOut"));
-            socket->readDataTransferModePar(*this);
-            socket->setCallbackObject(this, nullptr);
+            socket->setCallback(this);
             tcpSocketMap.addSocket(socket);
         }
         socket->processMessage(msg);
