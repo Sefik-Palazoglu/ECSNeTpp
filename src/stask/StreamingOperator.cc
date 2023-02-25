@@ -38,7 +38,7 @@ void StreamingOperator::initialize() {
         processingDelayPerEvent = par("processingDelayPerEvent").doubleValue();
 //    }
 
-    cpuCores = getAncestorPar("cores").longValue();
+    cpuCores = getAncestorPar("cores").intValue();
     if (cpuCores < 1) {
         throw new cRuntimeError("Number of CPU Cores is not set.");
     }
