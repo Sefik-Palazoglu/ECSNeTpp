@@ -22,7 +22,7 @@ simsignal_t SimulationController::totalSimTimeChangedSignal = registerSignal("to
 Define_Module(SimulationController);
 
 void SimulationController::initialize() {
-    packetCountLimit = par("packetCountLimit").longValue();
+    packetCountLimit = par("packetCountLimit").intValue();
     enableLimitFromSource = par("enableLimitFromSource").boolValue();
     packetCount = 0;
     sourcePacketCount = 0;
@@ -65,7 +65,7 @@ void SimulationController::receiveSignal(cComponent *source, simsignal_t signalI
     }
 }
 
-void SimulationController::receiveSignal(cComponent *source, simsignal_t signalID, long value, cObject *details){
+void SimulationController::receiveSignal(cComponent *source, simsignal_t signalID, intval_t value, cObject *details){
     if (signalID == ISTask::packetGeneratedSignal){
         if (simTime() >= getSimulation()->getWarmupPeriod()) {
             sourcePacketCount++;
