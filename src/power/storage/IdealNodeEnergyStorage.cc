@@ -39,7 +39,7 @@ Define_Module(IdealNodeEnergyStorage);
 
 void IdealNodeEnergyStorage::initialize(int stage) {
     if (stage == INITSTAGE_LOCAL) {
-        cores = getAncestorPar("cores").longValue();
+        cores = getAncestorPar("cores").intValue();
         idlePowerConsumption = W(par("idlePowerConsumption"));
         nominalCapacity = J(par("nominalCapacity"));
         residualCapacity = J(par("initialCapacity"));
