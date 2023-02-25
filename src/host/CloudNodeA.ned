@@ -22,7 +22,7 @@ import ecsnetpp.cpu.scheduling.ICpuCoreScheduler;
 import ecsnetpp.cpu.scheduling.RoundRobinCpuCoreScheduler;
 import inet.node.inet.StandardHost;
 import inet.node.inet.WirelessHost;
-import inet.node.inet.NodeBase;
+import inet.node.base.NodeBase;
 
 module CloudNodeA extends StandardHost
 {
