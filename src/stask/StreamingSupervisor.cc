@@ -162,9 +162,9 @@ void StreamingSupervisor::processTCPMessage(cMessage* msg) {
             delete msgToSend;
         }
     } else {
-        inet::TcpSocket* socket = tcpSocketMap.findSocketFor(msg);
+        inet::TcpSocket* socket = check_and_cast<inet::TcpSocket*>(tcpSocketMap.findSocketFor(msg));
         if (!socket) {
-            socket = new inet::TCPSocket(msg);
+            socket = new inet::TcpSocket(msg);
             socket->setOutputGate(gate("tcpOut"));
             socket->readDataTransferModePar(*this);
             socket->setCallbackObject(this, nullptr);
