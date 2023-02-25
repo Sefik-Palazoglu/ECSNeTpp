@@ -214,7 +214,7 @@ void StreamingSupervisor::socketDataArrived(inet::TcpSocket *socket, inet::Packe
     delete msg;
 }
 
-void StreamingSupervisor::socketFailure(int connId, void *yourPtr, int code) {
+void StreamingSupervisor::socketFailure(inet::TcpSocket *socket, int code) {
     if (code == inet::TCP_I_CONNECTION_RESET)
         EV << "Connection reset!\\n";
     else if (code == inet::TCP_I_CONNECTION_REFUSED)
