@@ -193,17 +193,17 @@ void StreamingSupervisor::socketDataArrived(inet::TcpSocket *socket, inet::Packe
 //    std::cout << "Received TCP data, " << msg->getByteLength() << " Length:" << pk->getByteLength() << " bytes" << endl;
 //    std::cout << getParentModule()->getFullPath() << "Proc delay: " << pk->getProcessingDelay() << endl;
     if (!ackersEnabled && !checkpointsEnabled) {
-        StreamingMessage* msgToSend = check_and_cast<StreamingMessage*>(msg);
+        StreamingMessage* msgToSend = check_and_cast<StreamingMessage*>(packet);
         const omnetpp::SimTime _networkDelay = simTime() - msgToSend->getChannelIngressTime();
         msgToSend->setNetworkDelay(_networkDelay.dbl());
         for (int i = 0; i < gateSize("streamingPortOut"); i++) {
             send(msgToSend->dup(), "streamingPortOut", i);
         }
     } else {
-        Ack *ack = dynamic_cast<Ack *>(msg);
+        Ack *ack = dynamic_cast<Ack *>(packet);
         if (nullptr == ack) {
             for (int i = 0; i < gateSize("streamingPortOut"); i++) {
-                send(msg->dup(), "streamingPortOut", i);
+                send(packet->dup(), "streamingPortOut", i);
             }
         } else {
             for (int i = 0; i < gateSize("ackerOut"); i++) {
