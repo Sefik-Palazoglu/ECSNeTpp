@@ -24,8 +24,6 @@ void GlobalStreamingSupervisor::initialize() {
     socket.setOutputGate(gate("udpOut"));
     bindMsg = new cMessage("UDP_C_BIND", inet::UDP_C_BIND);
     inet::UdpBindCommand *ctrl2 = new inet::UdpBindCommand();
-    int socketId = inet::UdpSocket::generateSocketId();
-    ctrl2->setSockId(socketId);
     ctrl2->setLocalPort(1000);
     bindMsg->setControlInfo(ctrl2);
     send(bindMsg, "udpOut");
