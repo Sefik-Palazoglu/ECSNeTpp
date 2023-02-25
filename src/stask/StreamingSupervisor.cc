@@ -151,7 +151,13 @@ void StreamingSupervisor::processTCPMessage(cMessage* msg) {
                     sock->connect(_downstreamNodes[i], 1000);
                 }
 //                std::cout << "Sending: " << msgToSend->getByteLength() << endl;
-                sock->send(msgToSend->dup());
+                EV << "1852: Try to check_and_cast msg to inet::Packet\n";
+                inet::Packet* packet = check_and_cast<inet::Packet*>(msgToSend->dup());
+                EV << "1852: SUCCESS to check_and_cast msg to inet::Packet\n";
+
+                EV << "1853: Try to send packet from 1852\n";
+                udpSocket.send(packet);
+                EV << "1853: SUCCESS to send packet from 1852\n";
             }
             delete msgToSend;
         }
