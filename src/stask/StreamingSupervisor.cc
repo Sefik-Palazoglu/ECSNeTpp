@@ -37,7 +37,7 @@ void StreamingSupervisor::initialize() {
         udpSocket.setOutputGate(gate("udpOut"));
     } else if (hasTcp) {
         serverSocket.setOutputGate(gate("tcpOut"));
-        serverSocket.readDataTransferModePar(*this);
+        // serverSocket.readDataTransferModePar(*this);
         serverSocket.bind(1000);
         serverSocket.listen();
     }
