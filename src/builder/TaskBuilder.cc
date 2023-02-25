@@ -65,7 +65,7 @@ void TaskBuilder::connect(cGate *src, cGate *dest, double delay, double ber,
 }
 
 void TaskBuilder::setStaskBoolPar(cModule* stask, const char* name, bool value) {
-    cBoolParImpl* isDistributionEnabledBoolPar = new cBoolParImpl();
+    auto* isDistributionEnabledBoolPar = new omnetpp::internal::cBoolParImpl();
     isDistributionEnabledBoolPar->setName(name);
     isDistributionEnabledBoolPar->setBoolValue(value);
     stask->addPar(isDistributionEnabledBoolPar);
@@ -123,7 +123,7 @@ void TaskBuilder::executeAllocationPlan(cModule *parent) {
                     staskType.c_str(), staskName.c_str());
         cModule *stask = modtype->create(staskName.c_str(), parent);
 
-        cDoubleParImpl *cyclesPerEvent = new cDoubleParImpl();
+        auto* cyclesPerEvent = new omnetpp::internal::cDoubleParImpl();
         cyclesPerEvent->setName("cyclesPerEvent");
         cyclesPerEvent->setUnit("MHz");
         cyclesPerEvent->setDoubleValue(staskCyclesPerEvent);
@@ -132,33 +132,33 @@ void TaskBuilder::executeAllocationPlan(cModule *parent) {
         // Add parameters to the tasks
         if (staskType == "ecsnetpp.stask.StreamingSource") {
 
-            cDoubleParImpl *msgSize = new cDoubleParImpl();
+            auto* msgSize = new omnetpp::internal::cDoubleParImpl();
             msgSize->setName("msgSize");
             msgSize->setDoubleValue(var1);
             stask->addPar(msgSize);
             setStaskBoolPar(stask, "isSourceMsgSizeDistributed", false);
 
-            cDoubleParImpl *eventRate = new cDoubleParImpl();
+            auto* eventRate = new omnetpp::internal::cDoubleParImpl();
             eventRate->setName("eventRate");
             eventRate->setDoubleValue(var2);
             stask->addPar(eventRate);
             setStaskBoolPar(stask, "isSourceEvRateDistributed", false);
 
         } else if (staskType == "ecsnetpp.stask.StreamingOperator") {
-            cDoubleParImpl *selectivityRatio = new cDoubleParImpl();
+            auto* selectivityRatio = new omnetpp::internal::cDoubleParImpl();
             selectivityRatio->setName("selectivityRatio");
             selectivityRatio->setDoubleValue(var1);
             stask->addPar(selectivityRatio);
             setStaskBoolPar(stask, "isOperatorSelectivityDistributed", false);
 
-            cDoubleParImpl *sizeIncreaseRatio = new cDoubleParImpl();
+            auto* sizeIncreaseRatio = new omnetpp::internal::cDoubleParImpl();
             sizeIncreaseRatio->setName("productivityRatio");
             sizeIncreaseRatio->setDoubleValue(var2);
             stask->addPar(sizeIncreaseRatio);
             setStaskBoolPar(stask, "isOperatorProductivityDistributed", false);
         }
 
-        cStringParImpl *mySTaskCategory = new cStringParImpl();
+        auto* mySTaskCategory = new omnetpp::internal::cStringParImpl();
         mySTaskCategory->setName("mySTaskCategory");
         mySTaskCategory->setStringValue(staskCategory.c_str());
         stask->addPar(mySTaskCategory);
@@ -231,7 +231,7 @@ void TaskBuilder::executeAllocationPlan(cModule *parent) {
                 ss << staskDownstreamCategoryToSenderMap[_srcSTaskCategory][i];
             }
 
-            cStringParImpl *mySenders = new cStringParImpl();
+            auto* mySenders = new omnetpp::internal::cStringParImpl();
             mySenders->setName("mySenders");
             mySenders->setStringValue(ss.str().c_str());
             _src->addPar(mySenders);
