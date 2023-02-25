@@ -57,13 +57,13 @@ network SimpleEdgeCloudEnvironment
         channel E2C_low extends DatarateChannel
         {
             delay = 0s;
-            datarate = eToCDatarate;
+            datarate = parent.eToCDatarate;
         }
 
         channel E2C_high extends DatarateChannel
         {
-            delay = eToCDelayMean;
-            datarate = eToCDatarate;
+            delay = parent.eToCDelayMean;
+            datarate = parent.eToCDatarate;
         }
     submodules:
         pi2Bs[numPiModel2Bs]: RaspberryPiModel2B;
