@@ -211,7 +211,7 @@ void StreamingSupervisor::socketDataArrived(inet::TcpSocket *socket, inet::Packe
             }
         }
     }
-    delete msg;
+    delete packet;
 }
 
 void StreamingSupervisor::socketFailure(inet::TcpSocket *socket, int code) {
