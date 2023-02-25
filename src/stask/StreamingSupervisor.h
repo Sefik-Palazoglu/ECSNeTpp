@@ -60,8 +60,14 @@ public:
             std::string senderSTaskCategory,
             std::vector<std::string> downstreamNodeFullPaths);
     virtual void resolveDownstreamNodeIPs();
-    virtual void socketDataArrived(int connId, void *yourPtr, cPacket *msg, bool urgent) override;
-    virtual void socketFailure(int connId, void *yourPtr, int code) override;
+    virtual void socketDataArrived(inet::TcpSocket *socket, inet::Packet *packet, bool urgent) override;
+    virtual void socketAvailable(inet::TcpSocket *socket, inet::TcpAvailableInfo *availableInfo) override;
+    virtual void socketEstablished(inet::TcpSocket *socket) override;
+    virtual void socketPeerClosed(inet::TcpSocket *socket) override;
+    virtual void socketClosed(inet::TcpSocket *socket) override;
+    virtual void socketFailure(inet::TcpSocket *socket, int code) override;
+    virtual void socketStatusArrived(inet::TcpSocket *socket, inet::TcpStatusInfo *status) override;
+    virtual void socketDeleted(inet::TcpSocket *socket) override;
 };
 
 }
