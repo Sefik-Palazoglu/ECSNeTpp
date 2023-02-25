@@ -223,10 +223,30 @@ void StreamingSupervisor::socketFailure(inet::TcpSocket *socket, int code) {
         EV << "Connection timed out!\\n";
 }
 
+void StreamingSupervisor::socketAvailable(inet::TcpSocket *socket, inet::TcpAvailableInfo *availableInfo) {
+
+}
+void StreamingSupervisor::socketEstablished(inet::TcpSocket *socket) {
+
+}
+void StreamingSupervisor::socketPeerClosed(inet::TcpSocket *socket) {
+
+}
+void StreamingSupervisor::socketClosed(inet::TcpSocket *socket) {
+
+}
+
 void StreamingSupervisor::processUDPPacket(cMessage *msg) {
     for (int i = 0; i < gateSize("streamingPortOut"); i++) {
         send(msg->dup(), "streamingPortOut", i);
     }
+}
+
+void StreamingSupervisor::socketStatusArrived(inet::TcpSocket *socket, inet::TcpStatusInfo *status) {
+
+}
+void StreamingSupervisor::socketDeleted(inet::TcpSocket *socket) {
+
 }
 
 void StreamingSupervisor::processUDPError(cMessage *error) {
