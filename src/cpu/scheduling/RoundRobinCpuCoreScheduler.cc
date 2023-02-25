@@ -20,7 +20,7 @@ namespace ecsnetpp {
 Define_Module(RoundRobinCpuCoreScheduler);
 
 void RoundRobinCpuCoreScheduler::initialize() {
-    cpuCores = getAncestorPar("cores").longValue();
+    cpuCores = getAncestorPar("cores").intValue();
 }
 
 long RoundRobinCpuCoreScheduler::getNextCPUCoreIndex() {
