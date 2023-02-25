@@ -140,10 +140,10 @@ void StreamingSupervisor::processTCPMessage(cMessage* msg) {
             std::vector<inet::L3Address> _downstreamNodes = senderStaskCategoryToDownstreamNodeIPMap[sender];
 //            std::cout << ">>>>>>>>>>>>>TEST" << msg->getKind() << " Sender=" << sender << " recpts="<< _downstreamNodes.size() << endl;
             for (size_t i = 0; i < _downstreamNodes.size(); i++) {
-                inet::TCPSocket* sock = destinationSocketMap[_downstreamNodes[i]];
+                inet::TcpSocket* sock = destinationSocketMap[_downstreamNodes[i]];
                 if (!sock) {
 //                std::cout << "RR=" << _downstreamNodes[i] << endl;
-                    sock = new inet::TCPSocket();
+                    sock = new inet::TcpSocket();
                     sock->setOutputGate(gate("tcpOut"));
                     sock->readDataTransferModePar(*this);
                     sock->setCallbackObject(this, nullptr);
@@ -157,7 +157,7 @@ void StreamingSupervisor::processTCPMessage(cMessage* msg) {
             delete msgToSend;
         }
     } else {
-        inet::TCPSocket* socket = tcpSocketMap.findSocketFor(msg);
+        inet::TcpSocket* socket = tcpSocketMap.findSocketFor(msg);
         if (!socket) {
             socket = new inet::TCPSocket(msg);
             socket->setOutputGate(gate("tcpOut"));
