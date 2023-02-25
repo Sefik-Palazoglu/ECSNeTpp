@@ -37,8 +37,13 @@ void GlobalStreamingSupervisor::handleMessage(cMessage *msg) {
                 senderStaskCategoryToDownstreamNodeIPMap[sender];
         for (size_t i = 0; i < _downstreamNodes.size(); i++) {
             socket.connect(_downstreamNodes[i], 1000);
+            EV << "4123: trying to cast StreamingMessage into inet::Packet\n";
+            inet::Packet* packet = check_and_cast<inet::Packet*>(msgToSend->dup());
+            EV << "4123: SUCCESS to cast StreamingMessage into inet::Packet\n";
 
-            socket.send(msgToSend->dup());
+            EV << "4124: trying to send the packet in 4123\n";
+            socket.send(packet);
+            EV << "4124: SUCCESS to send the packet in 4123\n";
             socket.close();
         }
         delete msgToSend;
