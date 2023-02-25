@@ -24,7 +24,7 @@ import ecsnetpp.common.SimulationController;
 import inet.visualizer.canvas.integrated.IntegratedCanvasVisualizer;
 import inet.networklayer.configurator.ipv4.Ipv4NetworkConfigurator;
 import inet.physicallayer.wireless.ieee80211.packetlevel.Ieee80211ScalarRadioMedium;
-import inet.common.lifecycle.LifecycleController;
+// import inet.common.lifecycle.LifecycleController;
 import inet.networklayer.configurator.ipv4.Ipv4NetworkConfigurator;
 import inet.node.contract.INetworkNode;
 import inet.physicallayer.wireless.common.contract.packetlevel.IRadioMedium;
@@ -95,9 +95,9 @@ network SimpleEdgeCloudEnvironment
         visualizer: IntegratedCanvasVisualizer {
             @display("p=629.408,38.447998");
         }
-        lifecycleController: LifecycleController {
-            @display("p=24.208,41.295998");
-        }
+        // lifecycleController: LifecycleController {
+            // @display("p=24.208,41.295998");
+        // }
     connections:
         stargazer3.ethg++ <--> E2C_high <--> albacore5.ethg++;
         albacore5.ethg++ <--> E2C_low <--> area1AP1.ethg++;
