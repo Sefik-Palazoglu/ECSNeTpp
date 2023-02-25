@@ -16,7 +16,7 @@
 #ifndef POWER_CONSUMER_NETWORKPOWERCONSUMER_H_
 #define POWER_CONSUMER_NETWORKPOWERCONSUMER_H_
 
-#include "inet/physicallayer/contract/packetlevel/IRadio.h"
+#include "inet/physicallayer/wireless/common/contract/packetlevel/IRadio.h"
 #include "inet/power/contract/IEpEnergyConsumer.h"
 #include "inet/power/contract/IEpEnergySource.h"
 
