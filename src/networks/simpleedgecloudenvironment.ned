@@ -56,7 +56,7 @@ network SimpleEdgeCloudEnvironment
     types:
         channel E2C_low extends DatarateChannel
         {
-            delay = 0;
+            delay = 0s;
             datarate = eToCDatarate;
         }
 
