@@ -37,8 +37,8 @@ void CPUCore::initialize() {
     ackersEnabled = getAncestorPar("ackersEnabled").boolValue();
     perCoreFreq = getAncestorPar("perCoreFreq").doubleValue();
     parallelisationFactor = par("parallelisationFactor").doubleValue();
-    threadsPerCore = getAncestorPar("threadsPerCore").longValue();
-    totalCores = getAncestorPar("cores").longValue();
+    threadsPerCore = getAncestorPar("threadsPerCore").intValue();
+    totalCores = getAncestorPar("cores").intValue();
     isOnEdgeDevice = getAncestorPar("isEdgeDevice").boolValue();
     std::cout<< "Cores: " << getParentModule()->getFullPath() << " : " << totalCores << endl;
 //    timerMsg = new cMessage();
