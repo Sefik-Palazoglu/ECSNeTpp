@@ -66,7 +66,7 @@ W CPUPowerConsumer::computeCPUPowerConsumption(double value) const {
 }
 
 void CPUPowerConsumer::receiveSignal(cComponent *source, simsignal_t signal,
-        long value, cObject *details) {
+        intval_t value, cObject *details) {
 
     if (simTime() >= getSimulation()->getWarmupPeriod()) {
         if (signal == ISTask::cpuStateChangedSignal) {
