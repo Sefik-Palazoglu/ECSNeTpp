@@ -188,7 +188,7 @@ void StreamingSupervisor::handleMessage(cMessage *msg) {
     }
 }
 
-void StreamingSupervisor::socketDataArrived(int connId, void *yourPtr, cPacket *msg, bool urgent) {
+void StreamingSupervisor::socketDataArrived(inet::TcpSocket *socket, inet::Packet *packet, bool urgent) {
 //    StreamingMessage *pk = check_and_cast<StreamingMessage *>(msg);
 //    std::cout << "Received TCP data, " << msg->getByteLength() << " Length:" << pk->getByteLength() << " bytes" << endl;
 //    std::cout << getParentModule()->getFullPath() << "Proc delay: " << pk->getProcessingDelay() << endl;
