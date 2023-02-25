@@ -146,7 +146,7 @@ W NetworkPowerConsumer::computePowerConsumption() const
 }
 
 void NetworkPowerConsumer::receiveSignal(cComponent *source,
-        simsignal_t signal, long value, cObject *details) {
+        simsignal_t signal, intval_t value, cObject *details) {
 
     if (simTime() >= getSimulation()->getWarmupPeriod()) {
         if (signal == IRadio::radioModeChangedSignal

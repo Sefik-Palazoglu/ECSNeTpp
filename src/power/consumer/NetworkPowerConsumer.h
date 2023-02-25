@@ -62,7 +62,7 @@ protected:
 
 public:
     virtual W getPowerConsumption() const {return powerConsumption;}
-    virtual void receiveSignal(cComponent *source, simsignal_t signal, long value, cObject *details) override;
+    virtual void receiveSignal(cComponent *source, simsignal_t signal, intval_t value, cObject *details) override;
 };
 
 }
