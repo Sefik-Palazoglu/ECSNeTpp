@@ -89,7 +89,7 @@ network SimpleEdgeCloudEnvironment
         radioMedium: Ieee80211ScalarRadioMedium {
             @display("p=344.608,38.447998");
         }
-        configurator: IPv4NetworkConfigurator {
+        configurator: Ipv4NetworkConfigurator {
             @display("p=193.664,38.447998");
         }
         visualizer: IntegratedCanvasVisualizer {
